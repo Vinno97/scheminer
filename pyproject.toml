@@ -1,0 +1,31 @@
+[tool.pdm]
+[tool.pdm.dev-dependencies]
+dev = [
+    "streamlit>=1.32.2",
+    "pyvis>=0.3.2",
+    "plotly>=5.20.0",
+    "matplotlib>=3.8.4",
+    "scipy>=1.13.0",
+    "streamlit-agraph>=0.0.45",
+]
+
+[project]
+name = "scheminer"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Vincent Brouwers", email = "vincentbrouwers9@gmail.com"},
+]
+dependencies = [
+    "networkx>=3.2.1",
+    "pandas>=2.2.1",
+    "pydantic>=2.6.4",
+    "tqdm>=4.66.2",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "Unlicenced"}
+
+[build-system]
+requires = ["pdm-pep517>=1.0"]
+build-backend = "pdm.pep517.api"
