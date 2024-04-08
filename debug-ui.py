@@ -226,16 +226,18 @@ with st.expander("Filter out low-corrolation relations"):
     overlap the other way around, however, which we can filter for."""
     relations = remove_small_subset_relations(relations)
 
-# Prepare for graph conversion
-selected_relations = (
-    pd.DataFrame.from_records(relations, columns=relations[0]._fields)
-    .rename({"strength": "weight"}, axis=1)
-    .sort_values(["to_column", "to_table", "from_column", "from_table"])
-)
-selected_relations.insert(0, "enabled", True)
-# selected_relations["cardinality"]= = selected_relations["cardinality"].map(lambda x: x.name)
-selected_relations = st.data_editor(selected_relations, column_config=COLUMN_CONFIG)
-selected_relations = selected_relations[selected_relations["enabled"]]
+with st.expander("Remove incorrect relations"):
+    """Remove any incorrect relations that weren't detected in an earlier stage."""
+    # Prepare for graph conversion
+    selected_relations = (
+        pd.DataFrame.from_records(relations, columns=relations[0]._fields)
+        .rename({"strength": "weight"}, axis=1)
+        .sort_values(["to_column", "to_table", "from_column", "from_table"])
+    )
+    selected_relations.insert(0, "enabled", True)
+    # selected_relations["cardinality"]= = selected_relations["cardinality"].map(lambda x: x.name)
+    selected_relations = st.data_editor(selected_relations, column_config=COLUMN_CONFIG)
+    selected_relations = selected_relations[selected_relations["enabled"]]
 
 
 # Convert to graph
