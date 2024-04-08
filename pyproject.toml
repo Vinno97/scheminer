@@ -24,7 +24,7 @@ dependencies = [
 ]
 requires-python = ">=3.11"
 readme = "README.md"
-license = {text = "Unlicenced"}
+license = {text = "MIT"}
 
 [build-system]
 requires = ["pdm-pep517>=1.0"]
